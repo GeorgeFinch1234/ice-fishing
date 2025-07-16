@@ -5,6 +5,7 @@ const ctx = canvas.getContext("2d");
 const movementSpeed = 5;
 let postionX = 0;
 let postionY=0;
+let mouseY = 0;
 const fishImg = new Image;
 fishImg.src="./assets/fluffy.png"
 
@@ -17,6 +18,7 @@ function draw(){
      ctx.fillStyle = "rgb(255,255,255)"
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
     fish()
+    fishingLine();
     setTimeout(draw, 20)
 }
 
@@ -30,7 +32,19 @@ postionY = Math.random()*window.innerHeight;
 ctx.drawImage(fishImg,postionX,postionY);
  
  }
-
+ addEventListener("mousemove", (e) => {
+    mouseY = e.clientY;
+ })
+function fishingLine() {
+    ctx.beginPath();
+    ctx.moveTo(window.innerWidth /2, 0);
+    //as never moves, form middle of screen
+    ctx.lineTo(window.innerWidth /2, mouseY);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+}
 
 
 //so no issue with img not loading
