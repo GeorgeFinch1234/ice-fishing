@@ -13,7 +13,7 @@ To practice HTML5 Canvas
 ![Static Badge](https://img.shields.io/badge/HTML-red)
 ## Demo
 [Demo](https://georgefinch1234.github.io/ice-fishing/)
-##ToDo
+## ToDo
 1) add in full images
 2) get fish to move from other direactions
 3) add in full animations
