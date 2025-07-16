@@ -14,6 +14,8 @@ const fishImg = new Image;
 fishImg.src="./assets/fluffy.png"
 const fishBiteImg = new Image;
 fishBiteImg.src="./assets/fluffy_bite.png"
+const baitImg = new Image;
+baitImg.src="./assets/bait-2.png"
 
 
 
@@ -103,6 +105,12 @@ ctx.drawImage(fishImg,x.postionX,x.postionY,100,50);
  addEventListener("mousemove", (e) => {
     mouseY = e.clientY;
  })
+ //to help with mobile. 
+ addEventListener("touchmove", (e) => {
+    //to stop scrolling down screen.
+    e.preventDefault
+    mouseY = e.clientY;
+ })
 function fishingLine() {
     ctx.beginPath();
     ctx.moveTo(window.innerWidth /2, 0);
@@ -111,12 +119,15 @@ function fishingLine() {
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
     ctx.stroke();
+    
 // so can undo the changes
 if(line.caught){
     //-35 so it looks like it eating the line.
 
     ctx.drawImage(fishBiteImg,(window.innerWidth /2)-35,mouseY-10,50,100);
   
+}else{
+    ctx.drawImage(baitImg,(window.innerWidth /2)-15,mouseY,30,30);
 }
 }
 function catchDetect(fishInput){
