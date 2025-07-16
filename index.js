@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 //how fast in pixels fish moves
 const movementSpeed = 5;
-
+let score = 0;
 let mouseY = 0;
 
 let line={
@@ -140,6 +140,7 @@ function fishReturned(x){
         line.fish = null,
         x.hit = false
         x.justReleased = true
+        score = score + 1;
         
     
 }
@@ -152,6 +153,9 @@ function gameEnviorment(){
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
     ctx.stroke();
+    ctx.fillStyle ="rgb(0,0,0)"
+    ctx.font ="48px serif"
+ctx.fillText("score = " + score,10,50);
 }
 
 //so no issue with img not loading
