@@ -18,5 +18,6 @@ To practice HTML5 Canvas
 2) get fish to move from other direactions
 3) add in full animations
 4) get fish to move in less straight lines.
+5) make it mobile friendly.
 
 
