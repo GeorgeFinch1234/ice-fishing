@@ -9,20 +9,27 @@ let mouseY = 0;
 let line={
     caught:false,
     fish:null,
+    lastPositon:0,
 }
 const fishImg = new Image;
 fishImg.src="./assets/fluffy.png"
+const fishFlippedImg = new Image;
+fishFlippedImg.src="./assets/fluffy_flipped.png"
 const fishBiteImg = new Image;
 fishBiteImg.src="./assets/fluffy_bite.png"
-const baitImg = new Image;
-baitImg.src="./assets/bait-2.png"
+const bait1Img = new Image;
+bait1Img.src="./assets/bait-1.png"
+const bait2Img = new Image;
+bait2Img.src="./assets/bait-2.png"
+const bait3Img = new Image;
+bait3Img.src="./assets/bait-3.png"
 
 
 
 
 class fish{
      constructor() {
-this.postionX=0,
+this.postionX=-100,
  //so doesn't start on land
  this.postionY=150,
  this.hit=false,
@@ -30,6 +37,7 @@ this.postionX=0,
  this.intialDraw = true
  //how long delayed by
  this.startDelay = Math.random()*1000
+ this.forwards = Math.random()*1
     }
 }
 
@@ -80,23 +88,39 @@ x.intialDraw = false
 }
 
 function fishRestartPostion(x){
-x.postionX = 0;
+x.forwards = Math.random()*1
+
+//if above 0.5 forwards, else back
+if(x.forwards >0.5 ){
+x.postionX = -100;
         
 x.postionY = Math.random()*((window.innerHeight-50)-150)+ 150;
+}else{
+x.postionX = window.innerWidth + 100
+
+        
+x.postionY = Math.random()*((window.innerHeight-50)-150)+ 150;
+}
+   
 }
  function fishDraw(x){
     if (x.justReleased){
         fishRestartPostion(x)
-x.justReleased = false
+    x.justReleased = false
     }
     if(!x.hit){
     //so if hit side 
-    if(x.postionX >=window.innerWidth){
+    if((x.postionX >=window.innerWidth && x.forwards >0.5 ) || (x.postionX <=0 && x.forwards <=0.5 )){
 fishRestartPostion(x)
     }
+    if(x.forwards >0.5){
+
    x.postionX = x.postionX + movementSpeed;
 ctx.drawImage(fishImg,x.postionX,x.postionY,100,50);
-
+    }else{
+        x.postionX = x.postionX - movementSpeed;
+ctx.drawImage(fishFlippedImg,x.postionX,x.postionY,100,50); 
+    }
  
  }
 
@@ -123,11 +147,20 @@ function fishingLine() {
 // so can undo the changes
 if(line.caught){
     //-35 so it looks like it eating the line.
-
     ctx.drawImage(fishBiteImg,(window.innerWidth /2)-35,mouseY-10,50,100);
   
 }else{
-    ctx.drawImage(baitImg,(window.innerWidth /2)-15,mouseY,30,30);
+if(mouseY<150){
+ ctx.drawImage(bait1Img,(window.innerWidth /2)-15,mouseY,30,30);
+ line.lastPositon = mouseY;
+}else if(line.lastPositon > mouseY){
+
+    ctx.drawImage(bait2Img,(window.innerWidth /2)-15,mouseY,30,30);
+     line.lastPositon = mouseY;
+}else{
+ ctx.drawImage(bait3Img,(window.innerWidth /2)-15,mouseY,30,30);
+  line.lastPositon = mouseY;
+}
 }
 }
 function catchDetect(fishInput){
@@ -136,7 +169,20 @@ function catchDetect(fishInput){
     //50 is fish hight so if line is between it
     // as 5 intervals need to allow for that
     //!line.caught = so only one fish at a time
-if(!line.caught&&((fishInput.postionX+90 <= window.innerWidth /2 && fishInput.postionX+110 >= window.innerWidth /2) && (fishInput.postionY<mouseY && fishInput.postionY + 50 > mouseY)) ){
+if(!line.caught
+    &&
+    (
+    (
+        //15 pixel gap barried
+        (fishInput.postionX+85 <= window.innerWidth /2 && fishInput.postionX+115 >= window.innerWidth /2 && fishInput.forwards >0.5)
+        || 
+     //doing this so don't catch reverse on taile
+(fishInput.postionX-15 <= window.innerWidth /2 && fishInput.postionX+15 >= window.innerWidth /2 && fishInput.forwards <=0.5) 
+    )
+        && 
+    (fishInput.postionY-15<mouseY && fishInput.postionY + 65 > mouseY)
+) 
+){
 line.caught = true;
 fishInput.hit = true;
 line.fish = fishInput;
