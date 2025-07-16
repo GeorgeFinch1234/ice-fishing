@@ -108,7 +108,7 @@ ctx.drawImage(fishImg,x.postionX,x.postionY,100,50);
  //to help with mobile. 
  addEventListener("touchmove", (e) => {
     //to stop scrolling down screen.
-    e.preventDefault
+    e.preventDefault()
     mouseY = e.touches[0].clientY;
  })
 function fishingLine() {
