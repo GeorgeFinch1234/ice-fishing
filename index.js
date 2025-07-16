@@ -9,6 +9,7 @@ let mouseY = 0;
 let line={
     caught:false,
     fish:null,
+    lastPositon:0,
 }
 const fishImg = new Image;
 fishImg.src="./assets/fluffy.png"
@@ -16,8 +17,12 @@ const fishFlippedImg = new Image;
 fishFlippedImg.src="./assets/fluffy_flipped.png"
 const fishBiteImg = new Image;
 fishBiteImg.src="./assets/fluffy_bite.png"
-const baitImg = new Image;
-baitImg.src="./assets/bait-2.png"
+const bait1Img = new Image;
+bait1Img.src="./assets/bait-1.png"
+const bait2Img = new Image;
+bait2Img.src="./assets/bait-2.png"
+const bait3Img = new Image;
+bait3Img.src="./assets/bait-3.png"
 
 
 
@@ -142,11 +147,20 @@ function fishingLine() {
 // so can undo the changes
 if(line.caught){
     //-35 so it looks like it eating the line.
-
     ctx.drawImage(fishBiteImg,(window.innerWidth /2)-35,mouseY-10,50,100);
   
 }else{
-    ctx.drawImage(baitImg,(window.innerWidth /2)-15,mouseY,30,30);
+if(mouseY<150){
+ ctx.drawImage(bait1Img,(window.innerWidth /2)-15,mouseY,30,30);
+ line.lastPositon = mouseY;
+}else if(line.lastPositon > mouseY){
+
+    ctx.drawImage(bait2Img,(window.innerWidth /2)-15,mouseY,30,30);
+     line.lastPositon = mouseY;
+}else{
+ ctx.drawImage(bait3Img,(window.innerWidth /2)-15,mouseY,30,30);
+  line.lastPositon = mouseY;
+}
 }
 }
 function catchDetect(fishInput){
