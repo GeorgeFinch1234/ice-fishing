@@ -110,7 +110,7 @@ ctx.drawImage(fishImg,x.postionX,x.postionY,100,50);
     //to stop scrolling down screen.
     e.preventDefault()
     mouseY = e.touches[0].clientY;
- })
+ },{passive:true})
 function fishingLine() {
     ctx.beginPath();
     ctx.moveTo(window.innerWidth /2, 0);
