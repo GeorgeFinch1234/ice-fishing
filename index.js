@@ -80,6 +80,9 @@ function setup(){
 
 }
 function draw(){
+
+
+    
     //as date time does it to mill a second
 
     //current game set for 60 seconds
@@ -87,6 +90,10 @@ function draw(){
       
      ctx.fillStyle = "rgb(255,255,255)"
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+
+//done before fish so not hidden behind it 
+gameEnviorment();
+
     fishes.forEach(x => {
         //to stagger them at start 
     if(x.intialDraw && x.startDelay <=0){
@@ -108,7 +115,7 @@ x.intialDraw = false
     
   
     
-     gameEnviorment();
+     
 
 
 
@@ -127,12 +134,12 @@ x.forwards = Math.random()*1
 if(x.forwards >0.5 ){
 x.postionX = -100;
         
-x.postionY = Math.random()*((window.innerHeight-50)-150)+ 150;
+x.postionY = Math.random()*((window.innerHeight-50)-160)+ 160;
 }else{
 x.postionX = window.innerWidth + 100
 
         
-x.postionY = Math.random()*((window.innerHeight-50)-150)+ 150;
+x.postionY = Math.random()*((window.innerHeight-50)-160)+ 160;
 }
    
 }
@@ -143,7 +150,7 @@ x.postionY = Math.random()*((window.innerHeight-50)-150)+ 150;
     }
     if(!x.hit){
     //so if hit side 
-    if((x.postionX >=window.innerWidth && x.forwards >0.5 ) || (x.postionX <=0 && x.forwards <=0.5 )){
+    if((x.postionX >=window.innerWidth && x.forwards >0.5 ) || (x.postionX <=-100 && x.forwards <=0.5 )){
 fishRestartPostion(x)
     }
     if(x.forwards >0.5){
@@ -237,14 +244,32 @@ function fishReturned(x){
 }
 function gameEnviorment(){
 
+const linGrad = ctx.createLinearGradient(0, 0, 0 , window.innerHeight );
+  
+linGrad.addColorStop(1, "#2a42b8");
+  linGrad.addColorStop(0, "#ffffff");
+ 
+
+
+
+  // assign gradients to fill and stroke styles
+  ctx.fillStyle = linGrad;
+  
+
+  // draw shapes
+  ctx.fillRect(0, 150, window.innerWidth , window.innerHeight);
+
+
+
+
 ctx.drawImage(penguinImg,(window.innerWidth /2),0,100,100);
 //50 so get middle of it
-ctx.drawImage(holeImg,(window.innerWidth /2)-50,100,100,100);
+ctx.drawImage(holeImg,(window.innerWidth /2)-50,100,100,50);
 
      
     ctx.fillStyle ="rgb(0,0,0)"
-    ctx.font ="48px serif"
-ctx.fillText("score = " + score,10,50);
+    ctx.font ="20px serif"
+ctx.fillText("score = " + score,10,20);
 //done hear so it looks like its going though the whole
   fishingLine();
   ctx.drawImage(holeFrontImg,(window.innerWidth /2)-50,100,100,50);
@@ -252,6 +277,15 @@ ctx.drawImage(IceImg,0,150,window.innerWidth,20);
 }
 
 //so no issue with img not loading
+
+addEventListener("resize",()=>{
+canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+     
+    
+})
+
+
 
 fishImg.onload = setup;
 
