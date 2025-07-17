@@ -35,7 +35,12 @@ const holeFrontImg = new Image;
 holeFrontImg.src="./assets/deck_front.png"
 const IceImg = new Image;
 IceImg.src="./assets/deck_side.png"
-
+const caughtFish1 = new Image;
+caughtFish1.src="./assets/caughtFish.png"
+const caughtFish2 = new Image;
+caughtFish2.src="./assets/caughtFish2.png"
+const caughtFish3 = new Image;
+caughtFish3.src="./assets/caughtFish3.png"
 
 playAgain.addEventListener("click",()=>{
     score=0;
@@ -274,6 +279,29 @@ ctx.fillText("score = " + score,10,20);
   fishingLine();
   ctx.drawImage(holeFrontImg,(window.innerWidth /2)-50,100,100,50);
 ctx.drawImage(IceImg,0,150,window.innerWidth,20);
+
+
+let fishPileX = 10;
+let fishPileY=0
+for(let i=0; i<score;i++){
+  if(i %3 == 1){
+ ctx.drawImage(caughtFish1,fishPileX,100-fishPileY,100,50);
+  } else if(i %3 == 2){
+ctx.drawImage(caughtFish3,fishPileX,100-fishPileY,100,50);
+  }else{
+ctx.drawImage(caughtFish2,fishPileX,100-fishPileY,100,50);
+  }
+
+  if(i%7==0&&i!=0){
+    fishPileX = fishPileX + 60
+fishPileY = 0
+  }
+  fishPileY = fishPileY + 10;
+}
+
+
+
+
 }
 
 //so no issue with img not loading
