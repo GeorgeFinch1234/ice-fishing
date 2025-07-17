@@ -40,7 +40,7 @@ caughtFish1.src="./assets/caughtFish.png"
 const caughtFish2 = new Image;
 caughtFish2.src="./assets/caughtFish2.png"
 const caughtFish3 = new Image;
-caughtFish3.src="./assets/caughtFish3.png"
+caughtFish3.src="./assets/caughtfish3.png"
 
 playAgain.addEventListener("click",()=>{
     score=0;
