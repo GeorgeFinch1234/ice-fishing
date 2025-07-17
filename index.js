@@ -70,12 +70,7 @@ const fishes = [new fish, new fish, new fish, new fish]
 
 
 
-
-
-
-
-async function setup(){
-
+async function loadImage() {
 const images = [
 fishImg ,
 
@@ -96,6 +91,13 @@ bait2Img ,
     await Promise.all(images.map((img) => new Promise((resolve) => {
     img.addEventListener("load", resolve);
 })))
+setup();
+}
+
+
+
+async function setup(){
+
 
 
     canvas.width = window.innerWidth;
@@ -342,5 +344,5 @@ canvas.width = window.innerWidth;
 
 
 
-setup();
+loadImage();
 
