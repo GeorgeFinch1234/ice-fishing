@@ -15,10 +15,10 @@ To practice HTML5 Canvas
 [Demo](https://georgefinch1234.github.io/ice-fishing/)
 ## ToDo
 1) add in full images
-2) get fish to move from other direactions
+2) ~get fish to move from other direactions~
 3) add in full animations
 4) get fish to move in less straight lines.
 5) make it mobile friendly.
-6) need to make it wait for all images to load
+6) ~wait for all images to load~
 
 
