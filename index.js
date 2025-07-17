@@ -1,11 +1,15 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+
+const gameOver = document.getElementById("gameOver");
+const scoreDisplay =document.getElementById("score");
+const playAgain =document.getElementById("playAgain");
 //how fast in pixels fish moves
 const movementSpeed = 5;
 let score = 0;
 let mouseY = 0;
-
+let currentTime = Date.now(); 
 let line={
     caught:false,
     fish:null,
@@ -23,9 +27,23 @@ const bait2Img = new Image;
 bait2Img.src="./assets/bait-2.png"
 const bait3Img = new Image;
 bait3Img.src="./assets/bait-3.png"
+const penguinImg = new Image;
+penguinImg.src="./assets/penguin.png"
+const holeImg = new Image;
+holeImg.src="./assets/deck_back.png"
+const holeFrontImg = new Image;
+holeFrontImg.src="./assets/deck_front.png"
+const IceImg = new Image;
+IceImg.src="./assets/deck_side.png"
 
 
+playAgain.addEventListener("click",()=>{
+    score=0;
+    currentTime = Date.now(); 
+    gameOver.style.display="none"
+    setup()
 
+})
 
 class fish{
      constructor() {
@@ -62,6 +80,11 @@ function setup(){
 
 }
 function draw(){
+    //as date time does it to mill a second
+
+    //current game set for 60 seconds
+    if(Date.now() < currentTime + 60000 ){
+      
      ctx.fillStyle = "rgb(255,255,255)"
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
     fishes.forEach(x => {
@@ -81,10 +104,20 @@ x.intialDraw = false
    });
     
     
-    gameEnviorment();
+   
     
-    fishingLine();
+  
+    
+     gameEnviorment();
+
+
+
+
     setTimeout(draw, 20)
+}else{
+gameOver.style.display = "flex";
+scoreDisplay.innerText = "score equals = "  +score
+}
 }
 
 function fishRestartPostion(x){
@@ -191,8 +224,8 @@ line.fish = fishInput;
 }
 //neeed fish so know which one to respawn in
 function fishReturned(x){
-//125 not 150 so fish a bit over the lne
-    if(line.fish === x && line.caught && mouseY<125){
+//70 not 150 so fish goes through the ice whole.
+    if(line.fish === x && line.caught && mouseY<70){
         line.caught = false
         line.fish = null,
         x.hit = false
@@ -203,16 +236,19 @@ function fishReturned(x){
 }
 }
 function gameEnviorment(){
-     ctx.beginPath();
-    ctx.moveTo(0, 150);
-    //as never moves, form middle of screen
-    ctx.lineTo(window.innerWidth, 150);
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 2;
-    ctx.stroke();
+
+ctx.drawImage(penguinImg,(window.innerWidth /2),0,100,100);
+//50 so get middle of it
+ctx.drawImage(holeImg,(window.innerWidth /2)-50,100,100,100);
+
+     
     ctx.fillStyle ="rgb(0,0,0)"
     ctx.font ="48px serif"
 ctx.fillText("score = " + score,10,50);
+//done hear so it looks like its going though the whole
+  fishingLine();
+  ctx.drawImage(holeFrontImg,(window.innerWidth /2)-50,100,100,50);
+ctx.drawImage(IceImg,0,150,window.innerWidth,20);
 }
 
 //so no issue with img not loading
