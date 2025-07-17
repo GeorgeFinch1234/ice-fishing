@@ -153,7 +153,7 @@ x.intialDraw = false
     setTimeout(draw, 20)
 }else{
 gameOver.style.display = "flex";
-scoreDisplay.innerText = "score equals = "  +score
+scoreDisplay.innerText = "Congratulations! you caught "  +score + " fish!"
 }
 }
 
