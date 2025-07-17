@@ -283,6 +283,8 @@ ctx.drawImage(IceImg,0,150,window.innerWidth,20);
 
 let fishPileX = 10;
 let fishPileY=0
+//so on small screen fish don't block at penguin
+if(score <=8 || window.innerWidth > 425){
 for(let i=0; i<score;i++){
   if(i %3 == 1){
  ctx.drawImage(caughtFish1,fishPileX,100-fishPileY,100,50);
@@ -297,6 +299,7 @@ ctx.drawImage(caughtFish2,fishPileX,100-fishPileY,100,50);
 fishPileY = 0
   }
   fishPileY = fishPileY + 10;
+}
 }
 
 
