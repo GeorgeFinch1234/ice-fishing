@@ -309,7 +309,9 @@ ctx.drawImage(IceImg,0,150,window.innerWidth,20);
 let fishPileX = 10;
 let fishPileY=0
 //so on small screen fish don't block at penguin
-if(score <=8 || window.innerWidth > 425){
+if(score <=8 || window.innerWidth > 600){
+    let fishPileX = 10;
+let fishPileY=0
 for(let i=0; i<score;i++){
   if(i %3 == 1){
  ctx.drawImage(caughtFish1,fishPileX,100-fishPileY,100,50);
@@ -325,6 +327,26 @@ fishPileY = 0
   }
   fishPileY = fishPileY + 10;
 }
+}else{
+    //so fish don't dispear on mobile
+       let fishPileX = 10;
+let fishPileY=0
+for(let i=0; i<8;i++){
+  if(i %3 == 1){
+ ctx.drawImage(caughtFish1,fishPileX,100-fishPileY,100,50);
+  } else if(i %3 == 2){
+ctx.drawImage(caughtFish3,fishPileX,100-fishPileY,100,50);
+  }else{
+ctx.drawImage(caughtFish2,fishPileX,100-fishPileY,100,50);
+  }
+
+  if(i%7==0&&i!=0){
+    fishPileX = fishPileX + 60
+fishPileY = 0
+  }
+  fishPileY = fishPileY + 10;
+}
+
 }
 
 
