@@ -1,6 +1,7 @@
 # Ice-Fishsing 
 A recreation of the club penguin game ice fishing.
-This is not a fished project
+This is not a fished project.
+Images from `tempusware` and `spriters-resource.com`
 ## Table of content
 1. [Goal](#goal)
 2. [Technology](#technology)
