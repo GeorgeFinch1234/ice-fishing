@@ -23,6 +23,14 @@ const bait2Img = new Image;
 bait2Img.src="./assets/bait-2.png"
 const bait3Img = new Image;
 bait3Img.src="./assets/bait-3.png"
+const penguinImg = new Image;
+penguinImg.src="./assets/penguin.png"
+const holeImg = new Image;
+holeImg.src="./assets/deck_back.png"
+const holeFrontImg = new Image;
+holeFrontImg.src="./assets/deck_front.png"
+const IceImg = new Image;
+IceImg.src="./assets/deck_side.png"
 
 
 
@@ -81,9 +89,11 @@ x.intialDraw = false
    });
     
     
-    gameEnviorment();
+   
     
-    fishingLine();
+  
+    
+     gameEnviorment();
     setTimeout(draw, 20)
 }
 
@@ -203,16 +213,18 @@ function fishReturned(x){
 }
 }
 function gameEnviorment(){
-     ctx.beginPath();
-    ctx.moveTo(0, 150);
-    //as never moves, form middle of screen
-    ctx.lineTo(window.innerWidth, 150);
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 2;
-    ctx.stroke();
+
+ctx.drawImage(penguinImg,(window.innerWidth /2),0,100,100);
+//50 so get middle of it
+ctx.drawImage(holeImg,(window.innerWidth /2)-50,100,100,100);
+
+     
     ctx.fillStyle ="rgb(0,0,0)"
     ctx.font ="48px serif"
 ctx.fillText("score = " + score,10,50);
+  fishingLine();
+  ctx.drawImage(holeFrontImg,(window.innerWidth /2)-50,100,100,50);
+ctx.drawImage(IceImg,0,150,window.innerWidth,20);
 }
 
 //so no issue with img not loading
