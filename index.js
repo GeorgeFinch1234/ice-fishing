@@ -292,7 +292,7 @@ linGrad.addColorStop(1, "#2a42b8");
 
 
 
-ctx.drawImage(penguinImg,(window.innerWidth /2),0,100,100);
+ctx.drawImage(penguinImg,(window.innerWidth /2),0,125,100);
 //50 so get middle of it
 ctx.drawImage(holeImg,(window.innerWidth /2)-50,100,100,50);
 
