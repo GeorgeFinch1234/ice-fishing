@@ -278,5 +278,14 @@ ctx.drawImage(IceImg,0,150,window.innerWidth,20);
 
 //so no issue with img not loading
 
+addEventListener("resize",()=>{
+canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+     
+    
+})
+
+
+
 fishImg.onload = setup;
 
