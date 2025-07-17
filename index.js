@@ -74,7 +74,30 @@ const fishes = [new fish, new fish, new fish, new fish]
 
 
 
-function setup(){
+async function setup(){
+
+const images = [
+fishImg ,
+
+fishFlippedImg ,
+ fishBiteImg,
+ bait1Img ,
+bait2Img ,
+ bait3Img ,
+ penguinImg, 
+ holeImg,
+ holeFrontImg,
+ IceImg ,
+ caughtFish1, 
+ caughtFish2 ,
+ caughtFish3 
+]
+ 
+    await Promise.all(images.map((img) => new Promise((resolve) => {
+    img.addEventListener("load", resolve);
+})))
+
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
    fishes.forEach(x => {
@@ -318,5 +341,6 @@ canvas.width = window.innerWidth;
 
 
 
-fishImg.onload = setup;
+
+setup();
 
