@@ -11,18 +11,23 @@ body{
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 2;
-    display:none ;
+    display:none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: orange;
+    background-color: white;
     padding: 20px;
     border-radius: 20px;
+    border: 5px darkblue solid;
 
 }
 #playAgain{
     border-radius: 20px;
     border: 1px black solid;
     padding: 15px;
+    background-color: ghostwhite;
+}
+#playAgain:hover{
+background-color:lightblue;
 }
