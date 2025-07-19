@@ -1,17 +1,18 @@
-body{
+body {
     margin: 0;
     overflow: hidden;
     position: relative;
-  
+
 }
-#gameOver{
+
+#gameOver {
 
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 2;
-    display:none;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -22,12 +23,14 @@ body{
     border: 5px darkblue solid;
 
 }
-#playAgain{
+
+#playAgain {
     border-radius: 20px;
     border: 1px black solid;
     padding: 15px;
     background-color: ghostwhite;
 }
-#playAgain:hover{
-background-color:lightblue;
+
+#playAgain:hover {
+    background-color: lightblue;
 }
